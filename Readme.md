@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
-* Студент: [Дмитрий Ужахов](https://up.htmlacademy.ru/javascript-individual/2/user/2389125).
-* Наставник: `Неизвестно`.
+* Студент: [Дмитрий Ужахов](https://htmlacademy.ru/profile/alhimik_w).
+* Наставник: [Алексей Хабиров](https://htmlacademy.ru/profile/alex_khab).
 
 ---
 
