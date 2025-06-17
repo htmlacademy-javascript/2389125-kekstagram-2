@@ -81,10 +81,10 @@ const createComment = () => ({
 
 //Создание фотографии
 const createPhoto = (id) => ({
-  id: id, // ID фотографии
+  id, // ID фотографии
   url: `photos/${id}.jpg`, // Путь к изображению
   description: getRandomArrayElement(DESCRIPTIONS), // Описание
-  ikes: getRandomInteger(MIN_LIKES, MAX_LIKES), // Лайки
+  likes: getRandomInteger(MIN_LIKES, MAX_LIKES), // Лайки
   comments: Array.from({length: getRandomInteger(0, MAX_COMMENTS)}, createComment) // Комментарии и функция для создания каждого комментария
 });
 
