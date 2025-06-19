@@ -1,4 +1,3 @@
-// Массив возможных имен для комментаторов
 const NAMES = [
   'Иван',
   'Мария',
@@ -17,7 +16,6 @@ const NAMES = [
   'Михаил'
 ];
 
-// Массив возможных сообщений для комментариев
 const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
@@ -27,7 +25,6 @@ const MESSAGES = [
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
 ];
 
-// Массив возможных описаний фотографий
 const DESCRIPTIONS = [
   'Прекрасный закат на пляже',
   'Моя кошка утром',
@@ -56,40 +53,38 @@ const DESCRIPTIONS = [
   'Фото с отпуска'
 ];
 
-const PHOTO_COUNT = 25; // Количество фотографий
-const MIN_LIKES = 15; // Минимальное количество лайков
-const MAX_LIKES = 200; // Максимальное количество лайков
-const MAX_COMMENTS = 30; // Максимальное количество комментариев
+const PHOTO_COUNT = 25;
+const MIN_LIKES = 15;
+const MAX_LIKES = 200;
+const MAX_COMMENTS = 30;
+const MAX_AVATARS = 6;
 
-// Функция для генерации случайного числа в диапазоне
+let commentUniqueId = 0;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   return Math.floor(Math.random() * (upper - lower + 1)) + lower;
 };
 
-//Получение случайного элемента из массива
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
-//Создание комментария
 const createComment = () => ({
-  id: getRandomInteger(1, 25), // Уникальный ID
-  avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`, // Случайный аватар
-  message: getRandomArrayElement(MESSAGES), // Случайное сообщение
-  name: getRandomArrayElement(NAMES) // Случайное имя
+  id: commentUniqueId++,
+  avatar: `img/avatar-${getRandomInteger(1, MAX_AVATARS)}.svg`,
+  message: getRandomArrayElement(MESSAGES),
+  name: getRandomArrayElement(NAMES)
 });
 
-//Создание фотографии
 const createPhoto = (id) => ({
-  id, // ID фотографии
-  url: `photos/${id}.jpg`, // Путь к изображению
-  description: getRandomArrayElement(DESCRIPTIONS), // Описание
-  likes: getRandomInteger(MIN_LIKES, MAX_LIKES), // Лайки
-  comments: Array.from({length: getRandomInteger(0, MAX_COMMENTS)}, createComment) // Комментарии и функция для создания каждого комментария
+  id,
+  url: `photos/${id}.jpg`,
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomInteger(MIN_LIKES, MAX_LIKES),
+  comments: Array.from({ length: getRandomInteger(0, MAX_COMMENTS) }, createComment)
 });
 
-//Генерация всех фотографий
-const photos = Array.from({length: PHOTO_COUNT},(_,index) => createPhoto(index + 1)
+const photos = Array.from({ length: PHOTO_COUNT }, (_, index) => createPhoto(index + 1)
 );
 
 console.log(photos);
